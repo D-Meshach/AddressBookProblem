@@ -10,7 +10,8 @@ namespace AddressBookProblem
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome To Address Book System");
+            // Console.WriteLine("Welcome To Address Book System");
+            AddressBookSystem addressBookSystem = new AddressBookSystem();
         }
     }
 }
