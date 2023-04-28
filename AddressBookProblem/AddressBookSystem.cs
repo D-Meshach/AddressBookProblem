@@ -11,7 +11,7 @@ namespace AddressBookProblem
     public class AddressBookSystem
     {
         // List<AddressProperties> addressList = new List<AddressProperties>();
-        Dictionary<int, AddressProperties> AddBook = new Dictionary<int, AddressProperties>();
+        Dictionary<string, AddressProperties> AddBook = new Dictionary<string, AddressProperties>();
         public class AddressProperties
         {
             public string firstName;
@@ -36,6 +36,7 @@ namespace AddressBookProblem
                 {
                     case 1:AddSingleContact(); break;
                     case 2:display();break;
+                    case 3:EditContact();break;
                     default:Console.WriteLine("Worong key");break;
                 }
                 Console.WriteLine("Do you wish to exit??Y/N");
@@ -62,9 +63,9 @@ namespace AddressBookProblem
         Console.WriteLine("Enter Email");
         string email = Convert.ToString(Console.ReadLine());
         AddressProperties ap = new AddressProperties { firstName = firstName, lastName=lastName,address=address,city=city,state=state,zip=zip,phoneNumber=phoneNumber,email=email};
-            if (!AddBook.ContainsKey(ap.phoneNumber))
+            if (!AddBook.ContainsKey(ap.firstName))
             {
-                AddBook[ap.phoneNumber] = ap;
+                AddBook[ap.firstName] = ap;
             }
             else {
                 Console.WriteLine("Contact With Phone number already exist");
@@ -80,7 +81,7 @@ namespace AddressBookProblem
             // KeyValuePair<int, AddressProperties> keypair = AddBook.OrderBy(p=>p.Value.firstName);
             for (int i = 0; i < AddBook.Count(); i++)
             {
-                KeyValuePair<int, AddressProperties> bookDetail = AddBook.ElementAt(i);
+                KeyValuePair<string, AddressProperties> bookDetail = AddBook.ElementAt(i);
                 Console.WriteLine("----" + bookDetail.Value.firstName + " " + bookDetail.Value.lastName+"------");
                 Console.WriteLine("Address: "+bookDetail.Value.address);
                 Console.WriteLine("City: "+bookDetail.Value.city);
@@ -88,8 +89,41 @@ namespace AddressBookProblem
                 Console.WriteLine("Zip: "+bookDetail.Value.zip);
                 Console.WriteLine("phoneNumber: "+bookDetail.Value.phoneNumber);
                 Console.WriteLine("Email: "+bookDetail.Value.email);
+                
 
             }
+        }
+        public void EditContact()
+        {
+            string name = Convert.ToString(Console.ReadLine());
+            AddBook.ToList().Find(u => u.Value.firstName.Contains("asdf"));
+            if (AddBook.ContainsKey(name))
+            {
+                Console.WriteLine("Update \n 1)lastName \n 2) Address \n 3)city \n 4) state \n  6)Zip \n 7)phone Number \n 8) Email");
+                int option = Convert.ToInt32(Console.ReadLine());
+                switch (option)
+                {
+                    case 1:Console.WriteLine("Enter last name");
+                        string lastName = Convert.ToString(Console.ReadLine());
+                        
+                        AddBook[name].lastName=lastName;break;
+                }
+                
+                /*Console.WriteLine("Enter address");
+                string address = Convert.ToString(Console.ReadLine());
+                Console.WriteLine("Enter City");
+                string city = Convert.ToString(Console.ReadLine());*/
+            }
+            else 
+            {
+                Console.WriteLine("No data Found");
+            }
+           /* var value = AddBook.Where(k => k.Value.firstName.Contains(name)).Select(k => k.Value);
+            foreach (var result in value)
+            {
+                
+                Console.WriteLine(result.firstName+"--"+result.lastName);
+            }*/
         }
 
     }
