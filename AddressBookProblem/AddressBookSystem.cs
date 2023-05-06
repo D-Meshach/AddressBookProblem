@@ -38,6 +38,7 @@ namespace AddressBookProblem
                     case 2:display();break;
                     case 3:EditContact();break;
                     case 4:DeleteContact();break;
+                    case 5: MultipleContact(); break;
                     default:Console.WriteLine("Worong key");break;
                 }
                 Console.WriteLine("Do you wish to exit??Y/N");
@@ -161,6 +162,20 @@ namespace AddressBookProblem
             else 
             {
                 Console.WriteLine("No such person with first name found");
+            }
+        }
+        //Multiple Contact UC5
+        public void MultipleContact()
+        {
+            Console.WriteLine("Enter the number of contacts");
+            int num = Convert.ToInt32(Console.ReadLine());
+            int i = 0;
+            
+            while (i < num) 
+            {
+                Console.WriteLine("Enter contact- "+(i+1));
+                AddSingleContact();
+                i++;
             }
         }
 
